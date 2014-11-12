@@ -1,19 +1,15 @@
 ﻿using UnityEngine;
 using System;
 
-public class GuiScript : MonoBehaviour {
+public class GuiScript : MonoBehaviour 
+{
 
 	public CustomGuiButton milkSoy;
 	public CustomGuiButton milkWhole;
 	public CustomGuiButton milkTwoPercent;
 	
-	void Start(){
-		milkSoy.init();
-		milkWhole.init();
-		milkTwoPercent.init();
-	}
-	
-	void OnGUI() {
+	void OnGUI() 
+	{
 		if(milkSoy.OnMouseClick()){ 
 			Debug.Log("clicked milkSoy");
 		}
@@ -24,20 +20,21 @@ public class GuiScript : MonoBehaviour {
 			Debug.Log("clicked milkTwoPercent");
 		}
 	}
+	
 }
 
-[Serializable] // This exposes public variables to Unity's Inspector.
-public class CustomGuiButton{
+[Serializable] // Exposes public variables of custom class to Unity's Inspector.
+public class CustomGuiButton
+{
 	public GUIStyle style = new GUIStyle();
-	public Texture2D image;
-	public int X = 100;
-	public int Y = 100;
-	
-	public void init(){
-		style.normal.background = image;
-	}
+	public Vector2 position = new Vector2(100,100);
 	
 	public bool OnMouseClick(){
-		return GUI.Button(new Rect(X,Y, image.width,image.height), "", style);
+		return GUI.Button(new Rect(position.x, 
+								   position.y, 
+								   style.normal.background.width,
+								   style.normal.background.height),
+						  "", 
+						  style);
 	}
 }		
