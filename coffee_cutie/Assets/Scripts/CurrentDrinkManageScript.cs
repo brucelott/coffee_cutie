@@ -26,7 +26,7 @@ public class CurrentDrinkManager {
 		   state=States.ruined;
 	}
 	
-	public void addMilk(TypesOfMilk newIng)  //except for milk, where you use "addIngredient" and pass the right enum from types of milk
+	public void addMilk(TypesOfMilk newIng)  //except for milk, where you use "addMilk" and pass the right enum from types of milk
 	{
 		addIngredient(Ingredients.milk);
 		currentDrink.typeOfMilk = newIng;
