@@ -9,11 +9,18 @@ public class Drink{
 	private Ingredients[] drinkIngredients; 
 	public TypesOfContainers typeOfContainer;
 	public TypesOfMilk typeOfMilk=TypesOfMilk.none;
+	public string name;
+
 
 	public Drink(Ingredients[] newIngs)
 	{
 
 		drinkIngredients = newIngs;
+	}
+	public Drink(Ingredients[] newIngs, string newName)
+	{
+		drinkIngredients = newIngs;
+		name = newName;
 	}
 	public Drink()
 	{
