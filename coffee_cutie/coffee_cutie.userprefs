@@ -1,9 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CurrentDrinkManageScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/justForRodrigo/guiForTesting.cs">
     <Files>
-      <File FileName="Assets/Scripts/DrinkScript.cs" Line="9" Column="41" />
-      <File FileName="Assets/Scripts/CurrentDrinkManageScript.cs" Line="94" Column="20" />
+      <File FileName="Assets/Scripts/DrinkScript.cs" Line="11" Column="39" />
+      <File FileName="Assets/Scripts/CurrentDrinkManageScript.cs" Line="30" Column="3" />
+      <File FileName="Assets/Scripts/justForRodrigo/guiForTesting.cs" Line="28" Column="24" />
+      <File FileName="Assets/Scripts/RecipeBook.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/IngredientsScript.cs" Line="5" Column="7" />
+      <File FileName="Assets/Scripts/ModifiableDrink.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

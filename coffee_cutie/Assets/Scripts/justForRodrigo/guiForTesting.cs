@@ -25,7 +25,7 @@ public class guiForTesting : MonoBehaviour {
 			drinkManager.initialize();
 			drinkManager.addContainer(TypesOfContainers.forHere, Ingredients.hotCup);
 			drinkManager.addIngredient(Ingredients.expresso);
-			drinkManager.addIngredient(TypesOfMilk.milkSoy);
+			drinkManager.addMilk(TypesOfMilk.milkSoy);
 			drinkManager.addIngredient(Ingredients.steam);
 			drinkManager.addIngredient(Ingredients.vanilla);
 			drinkManager.addIngredient(Ingredients.vanilla);
