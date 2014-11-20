@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\DrinkStation\ModifiableDrink.cs" />
      <Compile Include="Assets\Scripts\GuiScript.cs" />
      <Compile Include="Assets\Scripts\RecipeBook.cs" />
+     <Compile Include="Assets\Scripts\RegistrarStation\CustomerSpriteManagerScript.cs" />
      <Compile Include="Assets\Scripts\RegistrarStation\CustomerTextScript.cs" />
      <Compile Include="Assets\Scripts\RegistrarStation\RegistrarStationScript.cs" />
      <Compile Include="Assets\Scripts\justForRodrigo\boundsTest.cs" />

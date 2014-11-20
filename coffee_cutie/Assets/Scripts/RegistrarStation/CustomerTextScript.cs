@@ -8,10 +8,10 @@ public class CustomerTextScript : MonoBehaviour {
 	float showTime=0f;
 	
 	// Use this for initialization
-	Text text;
+	public Text text;
 	
 	void Start () {
-		text=GetComponent<Text>();
+		//text=GetComponent<Text>();
 		text.text = "text set up";
 	}
 	

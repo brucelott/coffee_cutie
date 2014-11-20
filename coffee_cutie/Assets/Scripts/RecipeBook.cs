@@ -7,20 +7,24 @@ public class RecipeBook{
 
 	//0
 	public static Drink hotVanillaLatte = new Drink(new Ingredients[] 
-								{Ingredients.hotCup, Ingredients.expresso, Ingredients.milk, Ingredients.vanilla,
-								Ingredients.vanilla, Ingredients.cap, Ingredients.steam, Ingredients.cardboardCuff} , 
+	                            {Ingredients.hotCup, Ingredients.expresso, Ingredients.milk, Ingredients.steam, Ingredients.vanilla,
+								Ingredients.vanilla, Ingredients.cap, Ingredients.cardboardCuff} , 
 								"hot vanilla latte");
 
 	//1
 	public static Drink coldVanillaLatte = new Drink(new Ingredients[] 
-	                              {Ingredients.coldCup, Ingredients.expresso, Ingredients.milk, Ingredients.vanilla,
+	                               {Ingredients.coldCup, Ingredients.expresso, Ingredients.milk, Ingredients.steam, Ingredients.vanilla,
 								   Ingredients.vanilla, Ingredients.ice, Ingredients.lidAndStraw},
 								"cold vanilla latte");
+	//2
+	public static Drink hotMochaLatte = new Drink (new Ingredients[]
+	                              {Ingredients.hotCup, Ingredients.expresso, Ingredients.expresso, Ingredients.milk, Ingredients.steam,
+									Ingredients.mocha, Ingredients.cap, Ingredients.cardboardCuff}, 
+									"hot mocha latte");
 
 
 
-
-	public Drink[] allDrinksArray = {hotVanillaLatte, coldVanillaLatte};
+	public Drink[] allDrinksArray = {hotVanillaLatte, coldVanillaLatte, hotMochaLatte};
 
 
 	public Drink returnRandomDrink()

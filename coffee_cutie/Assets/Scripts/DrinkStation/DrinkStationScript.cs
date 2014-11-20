@@ -5,6 +5,7 @@ public class DrinkStationScript : MonoBehaviour {
 
 
 	RecipeBook rBook = new RecipeBook();
+	//Drink referenceDrink= new Drink(new Ingredients[]{Ingredients.milk, Ingredients.hotCup});
 	Drink referenceDrink;
 	public CurrentDrinkManager drinkManager = new CurrentDrinkManager();
 	public RegistrarStationScript registrarStation;
@@ -20,6 +21,7 @@ public class DrinkStationScript : MonoBehaviour {
 
 	public void setReferenceDrink(Drink receivedDrink)
 	{
+		Debug.Log ("Drink received by drink station");
 		drinkManager.initialize ();
 		referenceDrink = receivedDrink;
 
@@ -27,8 +29,8 @@ public class DrinkStationScript : MonoBehaviour {
 
 	public void sendComparisonResult()
 	{
-		//bool result = drinkManager.compareToOtherDrink (referenceDrink);
-		//registrarStation.giveAnswer (result);
-		registrarStation.giveAnswer (true);
+		bool result = drinkManager.compareToOtherDrink (referenceDrink);
+		registrarStation.giveAnswer (result);
+		//registrarStation.giveAnswer (true);
 	}
 }

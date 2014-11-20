@@ -27,7 +27,7 @@ public class ButtonForDrinkManagerScript : MonoBehaviour {
 
 	void OnMouseUpAsButton()
 	{
-		Debug.Log ("Object clicked");
+		//Debug.Log ("Object clicked");
 		//currentDrinkManager.
 		switch (typeOfMessage) {
 		case TypesOfMessage.ingredient:

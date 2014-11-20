@@ -3,13 +3,14 @@ using System.Collections;
 
 public class RegistrarStationScript : MonoBehaviour {
 
-	private float timeForNextEvent;
+	private float timeForNextEvent=3f;
 	private enum States{
 		customerComing, customerAsking,
 		customerWaiting, customerResponding, 
 		customerLeaving};
 	States state;
-	public Transform customer;
+	public GameObject customer;
+	CustomerSpriteManagerScript customerSprite;
 	Drink askedDrink;
 	RecipeBook rBook = new RecipeBook();
 	public DrinkStationScript drinkStation;
@@ -19,6 +20,7 @@ public class RegistrarStationScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		customerSprite = GetComponentInChildren<CustomerSpriteManagerScript>();
 		nextCustomer ();
 	}
 
@@ -65,19 +67,22 @@ public class RegistrarStationScript : MonoBehaviour {
 		switch (newState) {
 
 			case States.customerComing:
+				timeForNextEvent=3f;
 				say ("Im coming up to the counter");
 				wasAnswerGiven=false;
-				timeForNextEvent=3f;
 				state=States.customerComing;
 				break;
 				
 			case States.customerAsking:
 				askedDrink=rBook.returnRandomDrink();
+				timeForNextEvent=30f;
 				say(constructAskingSentence(askedDrink));
+				sendAskedDrinkToDrinkStation();
 				state=States.customerWaiting;
 				break;
 
 			case States.customerResponding:
+				timeForNextEvent=2f;
 				if(correctDrinkAnswer)
 				{
 					say ("Thanks");
@@ -90,12 +95,11 @@ public class RegistrarStationScript : MonoBehaviour {
 					oneIncorrectDrink();
 				}
 				state=States.customerResponding;
-				timeForNextEvent=2f;
 				break;
 
 			case States.customerLeaving:
-				say ("I'm leaving");
 				timeForNextEvent=2f;
+				say ("I'm leaving");
 				state=States.customerLeaving;
 				break;
 
@@ -106,6 +110,7 @@ public class RegistrarStationScript : MonoBehaviour {
 	void nextCustomer()
 	{
 		say ("NEXT");
+		customerSprite.setRandomSprite ();
 		enterState (States.customerComing);
 	}
 
@@ -115,7 +120,7 @@ public class RegistrarStationScript : MonoBehaviour {
 	void say(string text)
 	{
 		BroadcastMessage ("updateText", text);
-		BroadcastMessage ("showText", 5f);
+		BroadcastMessage ("showText", timeForNextEvent-0.5);
 	}
 
 
