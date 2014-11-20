@@ -45,7 +45,42 @@ public class RecipeBook{
 
 	public string translate(Ingredients thisIng)  //translates Enum elements to strings
 	{
-		return "not implemented yet";
+				switch (thisIng) {
+
+				case Ingredients.cap:
+						return "Cap";
+				case Ingredients.cardboardCuff:
+						return "Cardboard cuff";
+				case Ingredients.coldCup:
+						return "Cold cup";
+				case Ingredients.expresso:
+						return "Expresso";
+				case Ingredients.hotCup:
+						return "Hot Cup";
+				case Ingredients.ice:
+						return "Ice";
+				case Ingredients.lidAndStraw:
+						return "Lid and straw";
+				case Ingredients.milk:
+						return "Milk";
+				case Ingredients.mocha:
+						return "Mocha";
+				case Ingredients.plainSyrup:
+						return "Plain syrup";
+				case Ingredients.steam:
+						return "Steam";
+				case Ingredients.vanilla:
+						return "Vanilla";
+				case Ingredients.none:
+						return "NONE!!";
+				default:
+						Debug.Log ("Problem translating ingredient");
+						return "?? ingredient";
+
+
+				}
+
+
 	}
 
 	public string translate(TypesOfMilk thisMilk)  	
