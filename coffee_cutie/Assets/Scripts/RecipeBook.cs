@@ -13,7 +13,7 @@ public class RecipeBook{
 
 	//1
 	public static Drink coldVanillaLatte = new Drink(new Ingredients[] 
-	                               {Ingredients.coldCup, Ingredients.expresso, Ingredients.milk, Ingredients.steam, Ingredients.vanilla,
+	                               {Ingredients.coldCup, Ingredients.expresso, Ingredients.milk, Ingredients.vanilla,
 								   Ingredients.vanilla, Ingredients.ice, Ingredients.lidAndStraw},
 								"cold vanilla latte");
 	//2
