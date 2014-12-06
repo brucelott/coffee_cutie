@@ -10,23 +10,35 @@ public class CurrentDrinkManager {
 	enum States{making, ruined}; //when the order is incorrect, the drink is ruined							
 	States state;				 //check for the state of the manager to deactivate the gui when the drink is ruined
 	Ingredients previousIngredientForOrder;
+	DrinkVisualizerScript visualizer;
 
-
+	
+	public void setVisualizerReference(DrinkVisualizerScript visualizer_local)
+	{
+		visualizer = visualizer_local;
+	}
 
 	///Use these public methods
 	/// vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 	public void addIngredient(Ingredients newIng)  //for adding almost all ingredients you use "addIngredient" 
 													//	and pass the right enum for ingredients												
 	{
-		if(state==States.ruined)
-			Debug.LogWarning("Ingredients shouldn't be added after the drink is ruined");
+		if (state != States.ruined) {
 
-		if(debugging) 
-			Debug.Log ("Added: " + Enum.GetName(typeof(Ingredients), newIng));
-		currentDrink.add(newIng);
-		updateVisuals(newIng);
-		if(!checkOrder(newIng))
-		   state=States.ruined;
+			currentDrink.add(newIng);
+			//if(debugging) 
+				//Debug.Log ("Added: " + Enum.GetName(typeof(Ingredients), newIng));
+			updateVisualsIngredient(newIng);
+			if (!checkOrder (newIng))
+				getsRuined ();
+		} else {
+			visualizerCantAddSound();	
+			//Debug.LogWarning ("Ingredients shouldn't be added after the drink is ruined");
+		}
+
+
+
+		   
 	}
 	
 	public void addMilk(TypesOfMilk newIng)  //except for milk, where you use "addMilk" and pass the right enum from types of milk
@@ -42,8 +54,19 @@ public class CurrentDrinkManager {
 				"It is: " + Enum.GetName(typeof(Ingredients), newIng));
 
 				}
-		addIngredient (newIng);
-		currentDrink.typeOfContainer = newCont;
+		if (currentDrink.typeOfContainer == TypesOfContainers.none) {
+						currentDrink.typeOfContainer = newCont;
+						addIngredient (newIng);
+				} else {
+			if(state!=States.ruined)
+				{
+				getsRuined();
+				}
+			else
+				{
+				visualizerCantAddSound();
+				}
+			}
 
 
 	}
@@ -53,12 +76,28 @@ public class CurrentDrinkManager {
 		currentDrink.empty ();
 		state = States.making;
 		previousIngredientForOrder = 0;
+		initializeVisualizer ();
 
 
 	}
 
 	public bool compareToOtherDrink(Drink otherDrink) //here you pass drinks from recipeBook to see if their ingredients match the ingredients of currentDrink
 	{
+
+		int limit; //this is to limit the amount of ingredients if the drink is not to go
+		if (otherDrink.typeOfContainer != TypesOfContainers.toGo) {
+						if (otherDrink.DrinkIngredients [0] == Ingredients.coldCup) {
+								limit = otherDrink.DrinkIngredients.Length - 1;
+						} else if (otherDrink.DrinkIngredients [0] == Ingredients.hotCup) {
+								limit = otherDrink.DrinkIngredients.Length - 2;
+						} else {
+								Debug.LogError ("the first ingredient of reference drink (from recipe book) is not a cup!!");
+								limit=0;
+						}
+				} else {
+			limit=otherDrink.DrinkIngredients.Length;
+				}
+
 
 		Ingredients[] firstArray = currentDrink.DrinkIngredients;
 		Ingredients[] secondArray = otherDrink.DrinkIngredients;
@@ -73,15 +112,15 @@ public class CurrentDrinkManager {
 						//}
 				}
 
-		if (firstArray.Length != secondArray.Length) 
+		if (firstArray.Length != limit) 
 			{
 						if (debugging)
 						Debug.Log ("Arrays of ingredients not the same size");
 						return false;
-			}
+			}	
 		else
 			{
-				for (int i=0; i<firstArray.Length; i++) 
+				for (int i=0; i<limit; i++) 
 				{
 					if(firstArray[i]!=secondArray[i])
 					{
@@ -125,10 +164,25 @@ public class CurrentDrinkManager {
 				}
 	}
 
-	private void updateVisuals(Ingredients newIng)
+	private void updateVisualsIngredient(Ingredients newIng)
 	{
+		visualizer.addIngredient (newIng, currentDrink.typeOfContainer);
 		//we have to send currentDrink.typeOfContainer besides newIng
 	}
 
+	private void visualizerCantAddSound()
+	{
+		visualizer.cantAddSoundPlay ();
+	}
 
+	private void getsRuined()
+	{
+		state=States.ruined;
+		visualizer.getsRuined ();
+	}
+
+	private void initializeVisualizer()
+	{
+		visualizer.initialize ();
+	}
 }

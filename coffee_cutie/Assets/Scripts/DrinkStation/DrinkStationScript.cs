@@ -3,15 +3,15 @@ using System.Collections;
 
 public class DrinkStationScript : MonoBehaviour {
 
-
+	public DrinkVisualizerScript drinkVisualizer;
 	RecipeBook rBook = new RecipeBook();
 	//Drink referenceDrink= new Drink(new Ingredients[]{Ingredients.milk, Ingredients.hotCup});
 	Drink referenceDrink;
-	public CurrentDrinkManager drinkManager = new CurrentDrinkManager();
+	public CurrentDrinkManager drinkManager = new CurrentDrinkManager ();
 	public RegistrarStationScript registrarStation;
 	// Use this for initialization
 	void Start () {
-	
+		drinkManager.setVisualizerReference(drinkVisualizer as DrinkVisualizerScript);
 	}
 	
 	// Update is called once per frame

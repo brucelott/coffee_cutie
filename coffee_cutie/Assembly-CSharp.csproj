@@ -48,18 +48,24 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\DrinkStation\ButtonForDrinkManagerScript.cs" />
      <Compile Include="Assets\Scripts\DrinkStation\CurrentDrinkManageScript.cs" />
-     <Compile Include="Assets\Scripts\DrinkStation\CurrentDrinkVisualizeScript.cs" />
      <Compile Include="Assets\Scripts\DrinkStation\DrinkScript.cs" />
      <Compile Include="Assets\Scripts\DrinkStation\DrinkStationScript.cs" />
+     <Compile Include="Assets\Scripts\DrinkStation\DrinkVisualizerScript.cs" />
      <Compile Include="Assets\Scripts\DrinkStation\IngredientsScript.cs" />
      <Compile Include="Assets\Scripts\DrinkStation\ModifiableDrink.cs" />
+     <Compile Include="Assets\Scripts\DrinkStation\SpriteChangeWithMouseScript.cs" />
+     <Compile Include="Assets\Scripts\GameControl\RoundControllerScript.cs" />
      <Compile Include="Assets\Scripts\GuiScript.cs" />
      <Compile Include="Assets\Scripts\RecipeBook.cs" />
+     <Compile Include="Assets\Scripts\RegistrarStation\ClockScript.cs" />
      <Compile Include="Assets\Scripts\RegistrarStation\CustomerSpriteManagerScript.cs" />
      <Compile Include="Assets\Scripts\RegistrarStation\CustomerTextScript.cs" />
      <Compile Include="Assets\Scripts\RegistrarStation\RegistrarStationScript.cs" />
+     <Compile Include="Assets\Scripts\StalkerStation\StalkerScript.cs" />
+     <Compile Include="Assets\Scripts\StalkerStation\StalkerStationScript.cs" />
      <Compile Include="Assets\Scripts\justForRodrigo\boundsTest.cs" />
      <Compile Include="Assets\Scripts\justForRodrigo\guiForTesting.cs" />
+     <Compile Include="Assets\TestScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

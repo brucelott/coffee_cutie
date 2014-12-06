@@ -18,6 +18,7 @@ public class RegistrarStationScript : MonoBehaviour {
 	bool correctDrinkAnswer;
 
 
+
 	// Use this for initialization
 	void Start () {
 		customerSprite = GetComponentInChildren<CustomerSpriteManagerScript>();

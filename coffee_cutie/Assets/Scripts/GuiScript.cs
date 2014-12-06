@@ -3,7 +3,7 @@ using System;
 
 public class GuiScript : MonoBehaviour 
 {
-
+	/*
 	RecipeBook rBook = new RecipeBook();
 	Drink referenceDrink;
 	CurrentDrinkManager drinkManager = new CurrentDrinkManager();
@@ -126,8 +126,9 @@ public class GuiScript : MonoBehaviour
 			else
 				Debug.Log("Wrong...");
 		}
-		*/
+
 	}
+	*/
 	
 }
 

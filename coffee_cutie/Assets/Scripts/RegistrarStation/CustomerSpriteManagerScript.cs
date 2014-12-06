@@ -6,9 +6,14 @@ public class CustomerSpriteManagerScript : MonoBehaviour {
 	public Sprite[] possibleSprites;
 	// Use this for initialization
 	SpriteRenderer spRenderer;
+
+	void Awake()
+	{
+		spRenderer = GetComponent<SpriteRenderer> ();
+		}
 	void Start () {
 	
-		spRenderer = GetComponent<SpriteRenderer> ();
+
 		//setRandomSprite ();
 	}
 	
