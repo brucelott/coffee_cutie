@@ -213,5 +213,8 @@ public class DrinkVisualizerScript : MonoBehaviour {
 		hotOrCold = Ingredients.none;
 	}
 
-
+	public void drinkDelivered()
+	{
+		renderer.sprite = null;
+	}
 }
