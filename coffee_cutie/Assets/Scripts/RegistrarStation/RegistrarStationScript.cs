@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class RegistrarStationScript : MonoBehaviour {
+
+
+	public RoundControllerScript roundController;
 
 	private float timeForNextEvent=3f;
 	private enum States{
@@ -16,17 +20,31 @@ public class RegistrarStationScript : MonoBehaviour {
 	public DrinkStationScript drinkStation;
 	bool wasAnswerGiven=false;
 	bool correctDrinkAnswer;
+	bool done;
+
+	AudioSource soundPlayer;
+	public AudioClip correctSound;
+	public AudioClip incorrectSound;
+
 
 
 
 	// Use this for initialization
 	void Start () {
 		customerSprite = GetComponentInChildren<CustomerSpriteManagerScript>();
-		nextCustomer ();
+		soundPlayer = GetComponent<AudioSource> ();
+		init ();
 	}
 
 
-	
+	void init()
+	{
+		done = false;
+		nextCustomer ();
+
+	}
+
+
 	// Update is called once per frame
 	void Update () {
 
@@ -76,7 +94,7 @@ public class RegistrarStationScript : MonoBehaviour {
 				
 			case States.customerAsking:
 				askedDrink=rBook.returnRandomDrink();
-				timeForNextEvent=30f;
+				timeForNextEvent=120f;
 				say(constructAskingSentence(askedDrink));
 				sendAskedDrinkToDrinkStation();
 				state=States.customerWaiting;
@@ -110,9 +128,11 @@ public class RegistrarStationScript : MonoBehaviour {
 
 	void nextCustomer()
 	{
-		say ("NEXT");
-		customerSprite.setRandomSprite ();
-		enterState (States.customerComing);
+		if (!done) {
+						say ("NEXT");
+						customerSprite.setRandomSprite ();
+						enterState (States.customerComing);
+				}
 	}
 
 
@@ -153,11 +173,14 @@ public class RegistrarStationScript : MonoBehaviour {
 	//
 	void oneCorrectDrink()
 	{
-		//This will be used to add points
+		soundPlayer.PlayOneShot (correctSound, 0.9f);
+		roundController.correctResult ();
 	}
 
 	void oneIncorrectDrink()
 	{
+		soundPlayer.PlayOneShot (incorrectSound, 0.5f);
+		roundController.incorrectResult ();
 		//This will be used to take hearts off
 	}
 }

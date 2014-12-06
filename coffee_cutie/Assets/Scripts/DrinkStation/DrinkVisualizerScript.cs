@@ -179,7 +179,7 @@ public class DrinkVisualizerScript : MonoBehaviour {
 			}
 			break;
 		case Ingredients.cardboardCuff:
-			soundPlayer.PlayOneShot(capSound, 0.7f);
+			soundPlayer.PlayOneShot(capSound, 0.5f);
 			if(container==TypesOfContainers.forHere)
 			{
 					
@@ -201,7 +201,7 @@ public class DrinkVisualizerScript : MonoBehaviour {
 	public void cantAddSoundPlay()
 	{
 		Debug.Log("Can't add when ruined!");
-		soundPlayer.PlayOneShot (cantAddSound, 0.7f);
+		soundPlayer.PlayOneShot (cantAddSound, 0.5f);
 	}
 
 	public void initialize()

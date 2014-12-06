@@ -9,9 +9,12 @@ public class CustomerTextScript : MonoBehaviour {
 	
 	// Use this for initialization
 	public Text text;
+	public Image image;
 	
 	void Start () {
 		//text=GetComponent<Text>();
+		text = GetComponentInChildren<Text> ();
+		image = GetComponent<Image> ();
 		text.text = "text set up";
 	}
 	
@@ -21,6 +24,7 @@ public class CustomerTextScript : MonoBehaviour {
 						showTime -= Time.deltaTime;
 				} else {
 						text.enabled=false;
+						image.enabled=false;
 				}
 	}
 	
@@ -34,6 +38,7 @@ public class CustomerTextScript : MonoBehaviour {
 	{
 		showTime = time;
 		text.enabled=true;
+		image.enabled=true;
 	}
 
 }
