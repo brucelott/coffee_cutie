@@ -14,13 +14,18 @@ public class RegistrarStationScript : MonoBehaviour {
 		customerLeaving};
 	States state;
 	public GameObject customer;
+	private Transform customerTransform;
+	Vector3 finalPosition;
+	public float hidingXdifference;
+	Vector3 hidingPosition;
+	public float movementSpeed;
 	CustomerSpriteManagerScript customerSprite;
 	Drink askedDrink;
 	RecipeBook rBook = new RecipeBook();
 	public DrinkStationScript drinkStation;
 	bool wasAnswerGiven=false;
 	bool correctDrinkAnswer;
-	bool done;
+	public bool done;
 
 	AudioSource soundPlayer;
 	public AudioClip correctSound;
@@ -33,13 +38,17 @@ public class RegistrarStationScript : MonoBehaviour {
 	void Start () {
 		customerSprite = GetComponentInChildren<CustomerSpriteManagerScript>();
 		soundPlayer = GetComponent<AudioSource> ();
+		customerTransform = customer.GetComponent<Transform> ();
+		finalPosition = customerTransform.position;
+		hidingPosition = finalPosition - new Vector3 (hidingXdifference, 0, 0);
 		init ();
 	}
 
 
-	void init()
+	public void init()
 	{
 		done = false;
+		customerTransform.position = hidingPosition;
 		nextCustomer ();
 
 	}
@@ -49,10 +58,11 @@ public class RegistrarStationScript : MonoBehaviour {
 	void Update () {
 
 		timeForNextEvent -= Time.deltaTime;
-
+		float step =  movementSpeed * Time.deltaTime;
 		switch (state){
 
 		case States.customerComing:
+			customerTransform.position = Vector3.MoveTowards(customerTransform.position, finalPosition, step);
 			if(timeForNextEvent<=0)
 				enterState(States.customerAsking);
 			break;
@@ -68,6 +78,7 @@ public class RegistrarStationScript : MonoBehaviour {
 			break;
 
 		case States.customerLeaving:
+			customerTransform.position = Vector3.MoveTowards(customerTransform.position, hidingPosition, step);
 			if(timeForNextEvent<=0)
 				nextCustomer();
 			break;
@@ -87,7 +98,7 @@ public class RegistrarStationScript : MonoBehaviour {
 
 			case States.customerComing:
 				timeForNextEvent=3f;
-				say ("Im coming up to the counter");
+				//say ("Im coming up to the counter");
 				wasAnswerGiven=false;
 				state=States.customerComing;
 				break;
@@ -117,7 +128,7 @@ public class RegistrarStationScript : MonoBehaviour {
 				break;
 
 			case States.customerLeaving:
-				timeForNextEvent=2f;
+				timeForNextEvent=1f;
 				say ("I'm leaving");
 				state=States.customerLeaving;
 				break;
@@ -129,9 +140,11 @@ public class RegistrarStationScript : MonoBehaviour {
 	void nextCustomer()
 	{
 		if (!done) {
-						say ("NEXT");
+						//say ("NEXT");
 						customerSprite.setRandomSprite ();
 						enterState (States.customerComing);
+				} else {
+			//last customer is gone
 				}
 	}
 

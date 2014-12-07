@@ -13,6 +13,11 @@ public class StalkerScript : MonoBehaviour {
 	public Sprite normalSprite;
 	public Sprite angrySprite;
 	public Transform stalkerVisualObj;
+	private SpriteRenderer spRenderer;
+	public int chanceInOfGettingAngry;
+	public float angryTime;
+	private float currentAngryTime;
+
 
 	Vector3 originalPosition;
 	public float positionDifferenceY;
@@ -23,6 +28,10 @@ public class StalkerScript : MonoBehaviour {
 	AudioSource soundPlayer;
 	public AudioClip heySound;
 	public AudioClip angrySound;
+
+	public float maxBubbleSpeed;
+
+	public RoundControllerScript roundController;
 
 
 	// Use this for initialization
@@ -38,11 +47,13 @@ public class StalkerScript : MonoBehaviour {
 		"DO YOU GET HOT BEHIND THAT COUNTER?",
 		"I’D RIP THAT LITTLE APRON RIGHT OFF!"
 	};
-	void init()
+	public void init()
 	{
 		deactivateButton ();
-		//state = StalkerStates.waitingOut;
-		state = StalkerStates.comingIn;
+		spRenderer.sprite = normalSprite;
+		state = StalkerStates.waitingOut;
+		stalkerVisualObj.position = waitingPosition;
+		//state = StalkerStates.comingIn;
 
 	}
 
@@ -52,6 +63,8 @@ public class StalkerScript : MonoBehaviour {
 		bImage = GetComponentInChildren<Image> ();
 
 		soundPlayer = GetComponent<AudioSource> ();
+
+		spRenderer = stalkerVisualObj.GetComponent<SpriteRenderer> ();
 
 		buttonMovementScript = GetComponentInChildren<RandomMovementScript> ();
 		originalPosition = stalkerVisualObj.position;
@@ -80,6 +93,14 @@ public class StalkerScript : MonoBehaviour {
 				state=StalkerStates.waitingOut;
 			}
 		}
+		if (state == StalkerStates.angry) {
+			currentAngryTime=-Time.deltaTime;
+				if(currentAngryTime<=0)
+				{
+					leave ();
+				}
+
+			}
 
 
 	
@@ -87,7 +108,8 @@ public class StalkerScript : MonoBehaviour {
 
 	public void startWorking()
 	{
-
+		init ();
+		state = StalkerStates.comingIn;
 	}
 
 	private void leave()
@@ -104,7 +126,12 @@ public class StalkerScript : MonoBehaviour {
 	public void buttonWasPressed()
 	{
 		deactivateButton ();
-		leave ();
+
+		if (Random.Range (0, chanceInOfGettingAngry) == 0) {
+						getAngry ();
+				} else {
+						leave ();
+				}
 
 	}
 
@@ -113,14 +140,26 @@ public class StalkerScript : MonoBehaviour {
 		soundPlayer.PlayOneShot (heySound, 0.8f);
 		activateButton ();
 		randomizeText ();
-		buttonMovementScript.init();
+		buttonMovementScript.init(maxBubbleSpeed);
 	}
+
+	private void getAngry()
+	{
+		soundPlayer.PlayOneShot (angrySound, 0.6f);
+		spRenderer.sprite = angrySprite; 
+		currentAngryTime = angryTime;
+		state = StalkerStates.angry;
+		roundController.aStalkerGotAngry ();
+
+	}
+
 
 	private void activateButton()
 	{
 		bubbleText.enabled = true;
 		button.enabled = true;
 		bImage.enabled = true;
+		buttonMovementScript.init ();
 	}
 
 	private void deactivateButton()

@@ -9,24 +9,31 @@ public class StalkerStationScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-	}
+	}	
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-	void addStalker()
+	public void addStalker()
 	{
-		if (!stalker1.on) {
+		if (stalker1.state==StalkerScript.StalkerStates.waitingOut) {
 			stalker1.startWorking();
-				} else if (!stalker2.on) {
+		} else if (stalker2.state==StalkerScript.StalkerStates.waitingOut) {
 			stalker2.startWorking();
-				} else if (!stalker3.on) {
+		} else if (stalker3.state==StalkerScript.StalkerStates.waitingOut) {
 			stalker3.startWorking ();
 				} else {
 			Debug.Log("All stalkers working");
 				}
 
+	}
+
+	public void init()
+	{
+		stalker1.init ();
+		stalker2.init ();
+		stalker3.init ();
 	}
 }

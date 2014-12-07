@@ -11,24 +11,30 @@ public class ClockScript : MonoBehaviour {
 	int currentFrame;
 	float currentTime;
 	float timeStep;
+	private AudioSource soundPlayer;
+	public AudioClip bellSound;
+	public bool stopped;
 
+	public RoundControllerScript roundController;
 	// Use this for initialization
 	void Start () {
-		spriteStages=frames.Length;
-		timeStep=roundFullTime/spriteStages;
-		currentTime = timeStep;
-		currentFrame = 0;
+
 		renderer = GetComponent<SpriteRenderer> ();
+		soundPlayer = GetComponent<AudioSource> ();
+		spriteStages=frames.Length;
+
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		currentTime -= Time.deltaTime;
-		if (currentTime <= 0) {
-			currentTime=timeStep;
-			nextFrame();
+		if (!stopped) {
+						currentTime -= Time.deltaTime;
+						if (currentTime <= 0) {
+								currentTime = timeStep;
+								nextFrame ();
+						}
 				}
 
 
@@ -47,6 +53,25 @@ public class ClockScript : MonoBehaviour {
 
 	void endOfClockReached()
 	{
+		soundPlayer.PlayOneShot (bellSound, 0.7f);
 		currentFrame = 0;
+		stopped = true;
+		roundController.outOfTime ();
+	}
+
+	public void init()
+	{
+		stopped = false;
+		timeStep=roundFullTime/spriteStages;
+		currentTime = timeStep;
+		currentFrame = 0;
+		renderer.sprite = frames [currentFrame];
+	}
+
+	public void init(float newRoundTime)
+	{
+		roundFullTime=newRoundTime;
+		init ();
+
 	}
 }

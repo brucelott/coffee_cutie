@@ -60,6 +60,8 @@
      <Compile Include="Assets\Scripts\RegistrarStation\ClockScript.cs" />
      <Compile Include="Assets\Scripts\RegistrarStation\CustomerSpriteManagerScript.cs" />
      <Compile Include="Assets\Scripts\RegistrarStation\CustomerTextScript.cs" />
+     <Compile Include="Assets\Scripts\RegistrarStation\HeartManagerScript.cs" />
+     <Compile Include="Assets\Scripts\RegistrarStation\HeartScript.cs" />
      <Compile Include="Assets\Scripts\RegistrarStation\RegistrarStationScript.cs" />
      <Compile Include="Assets\Scripts\StalkerStation\CrazyRandomMovementScript1.cs" />
      <Compile Include="Assets\Scripts\StalkerStation\RandomMovementScript.cs" />
@@ -67,6 +69,7 @@
      <Compile Include="Assets\Scripts\StalkerStation\StalkerStationScript.cs" />
      <Compile Include="Assets\Scripts\justForRodrigo\boundsTest.cs" />
      <Compile Include="Assets\Scripts\justForRodrigo\guiForTesting.cs" />
+     <Compile Include="Assets\Scripts\screenFaderScript.cs" />
      <Compile Include="Assets\TestScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>

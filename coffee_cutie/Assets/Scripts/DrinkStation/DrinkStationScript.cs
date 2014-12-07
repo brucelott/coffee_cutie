@@ -22,7 +22,7 @@ public class DrinkStationScript : MonoBehaviour {
 	public void setReferenceDrink(Drink receivedDrink)
 	{
 		Debug.Log ("Drink received by drink station");
-		drinkManager.initialize ();
+		//drinkManager.initialize ();
 		referenceDrink = receivedDrink;
 
 	}
@@ -31,6 +31,12 @@ public class DrinkStationScript : MonoBehaviour {
 	{
 		bool result = drinkManager.compareToOtherDrink (referenceDrink);
 		registrarStation.giveAnswer (result);
+		drinkManager.initialize ();
 		//registrarStation.giveAnswer (true);
+	}
+
+	public void init()
+	{
+		drinkManager.initialize ();
 	}
 }

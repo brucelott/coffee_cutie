@@ -83,7 +83,7 @@ public class CurrentDrinkManager {
 
 	public bool compareToOtherDrink(Drink otherDrink) //here you pass drinks from recipeBook to see if their ingredients match the ingredients of currentDrink
 	{
-		visualizer.drinkDelivered ();
+		//visualizer.drinkDelivered ();
 		int limit; //this is to limit the amount of ingredients if the drink is not to go
 		if (otherDrink.typeOfContainer != TypesOfContainers.toGo) {
 						if (otherDrink.DrinkIngredients [0] == Ingredients.coldCup) {
@@ -144,6 +144,7 @@ public class CurrentDrinkManager {
 					return false;
 					}
 			}
+		initialize ();
 
 	}
 

@@ -40,6 +40,14 @@ public class RandomMovementScript : MonoBehaviour {
 
 	}
 
+	public void init(float newMaxSpeed)
+	{
+		rectTransform.position=startPosition;
+		speed=new Vector3(Random.Range(-1*newMaxSpeed, newMaxSpeed), Random.Range(-1*newMaxSpeed, newMaxSpeed), 0);
+		
+	}
+
+
 	public void init()
 	{
 		rectTransform.position=startPosition;

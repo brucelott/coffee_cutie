@@ -21,10 +21,26 @@ public class RecipeBook{
 	                              {Ingredients.hotCup, Ingredients.expresso, Ingredients.expresso, Ingredients.milk, Ingredients.steam,
 									Ingredients.mocha, Ingredients.cap, Ingredients.cardboardCuff}, 
 									"hot mocha latte");
+	//3
+	public static Drink coldLatte = new Drink(new Ingredients[] 
+	                                          {Ingredients.coldCup, Ingredients.expresso, Ingredients.expresso, Ingredients.milk, Ingredients.plainSyrup,
+											 Ingredients.ice, Ingredients.lidAndStraw},
+										"cold latte");
+	//4
+	public static Drink coldMochaLatte = new Drink(new Ingredients[] 
+	                                               {Ingredients.coldCup, Ingredients.expresso, Ingredients.expresso, Ingredients.milk, Ingredients.mocha,
+													 Ingredients.ice, Ingredients.lidAndStraw},
+										"cold mocha latte");
+	//5
+		public static Drink hotLatte = new Drink(new Ingredients[] 
+	                                         {Ingredients.hotCup, Ingredients.expresso, Ingredients.expresso, Ingredients.milk, Ingredients.steam, 
+													Ingredients.plainSyrup, Ingredients.cap, Ingredients.cardboardCuff} , 
+										"hot latte");
 
 
 
-	public Drink[] allDrinksArray = {hotVanillaLatte, coldVanillaLatte, hotMochaLatte};
+
+	public Drink[] allDrinksArray = {hotVanillaLatte, coldVanillaLatte, hotMochaLatte, coldLatte, coldMochaLatte, hotLatte };
 
 
 	public Drink returnRandomDrink()
