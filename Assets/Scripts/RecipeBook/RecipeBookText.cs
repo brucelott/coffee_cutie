@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using System.Collections;
 using System;
 
@@ -9,7 +10,7 @@ public class RecipeBookText : MonoBehaviour {
 	RecipeBook recipeBook = new RecipeBook();
 	private int recipeIndex = 0;
 
-	void Start () 
+	void Start() 
 	{
 		text = gameObject.GetComponent<Text>();
 		text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
@@ -35,16 +36,35 @@ public class RecipeBookText : MonoBehaviour {
 
 	private string getRecipe(Drink drink) 
 	{
-		string output = "";
-		output += drink.name.ToUpper();
-		output += "\n";
+		/* Name of recipe. */
+		string output = drink.name.ToUpper() + "\n";
+
+		/* List of Ingredients */ 
+		// Make sure duplicates of ingredients aren't recounted.
+		List<int> duplicateIngredientIndices = new List<int>(); 
+
 		for(int i = 0; i < drink.DrinkIngredients.Length; i++)
 		{
-			output += "- ";
-			output += recipeBook.translate(drink.DrinkIngredients[i]);
-			output += "\n";
+			if(duplicateIngredientIndices.Contains(i) == false) {
+				// Check if there are multiples of ingredient i.
+				int numberOfIngredient = 1;
+				for(int j = 0; j < drink.DrinkIngredients.Length; j++) 
+				{
+					if(i != j && duplicateIngredientIndices.Contains(j) == false) 
+					{
+						if(drink.DrinkIngredients[i] == drink.DrinkIngredients[j]) 
+						{
+							numberOfIngredient++;
+							duplicateIngredientIndices.Add(j);
+						}
+					}
+				}
+				output += "- " + recipeBook.translate(drink.DrinkIngredients[i]);
+				if(numberOfIngredient > 1)
+					output += " x " + numberOfIngredient;
+				output += "\n";
+			}
 		}
-
 		return output;
 	}
 
