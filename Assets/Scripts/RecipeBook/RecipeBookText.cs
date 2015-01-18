@@ -7,13 +7,30 @@ public class RecipeBookText : MonoBehaviour {
 
 	public Text text;
 	RecipeBook recipeBook = new RecipeBook();
+	private int recipeIndex = 0;
 
 	void Start () 
 	{
 		text = gameObject.GetComponent<Text>();
-		/* text.text = "Hot Vanilla Latte:\n\n- Ingredient 1\n- Ingredient 2\n- Ingredient 3"; */
-		/* text.text = recipeBook.translate(recipeBook.allDrinksArray[0].DrinkIngredients[0]); */
-		text.text = getRecipe(recipeBook.allDrinksArray[0]);
+		text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+	}
+
+	public void getNextRecipe() 
+	{
+		if(recipeIndex < recipeBook.allDrinksArray.Length-1)
+		{
+			recipeIndex++;
+			text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+		}
+	}
+
+	public void getPreviousRecipe()
+	{
+		if(recipeIndex > 0)
+		{
+			recipeIndex--;
+			text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+		}
 	}
 
 	private string getRecipe(Drink drink) 
@@ -23,6 +40,7 @@ public class RecipeBookText : MonoBehaviour {
 		output += "\n";
 		for(int i = 0; i < drink.DrinkIngredients.Length; i++)
 		{
+			output += "- ";
 			output += recipeBook.translate(drink.DrinkIngredients[i]);
 			output += "\n";
 		}
