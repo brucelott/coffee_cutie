@@ -19,7 +19,7 @@ public class RecipeBookText : MonoBehaviour {
 	private string getRecipe(Drink drink) 
 	{
 		/* Name of recipe. */
-		string output = drink.name.ToUpper() + "\n";
+		string output = drink.name.ToUpper() + "\n\n";
 
 		/* List of Ingredients */ 
 		// Make sure duplicates of ingredients aren't recounted.
