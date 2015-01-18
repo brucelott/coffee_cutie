@@ -16,24 +16,6 @@ public class RecipeBookText : MonoBehaviour {
 		text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
 	}
 
-	public void getNextRecipe() 
-	{
-		if(recipeIndex < recipeBook.allDrinksArray.Length-1)
-		{
-			recipeIndex++;
-			text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
-		}
-	}
-
-	public void getPreviousRecipe()
-	{
-		if(recipeIndex > 0)
-		{
-			recipeIndex--;
-			text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
-		}
-	}
-
 	private string getRecipe(Drink drink) 
 	{
 		/* Name of recipe. */
@@ -66,6 +48,25 @@ public class RecipeBookText : MonoBehaviour {
 			}
 		}
 		return output;
+	}
+
+	/* These are for UI buttons to interface with. */
+	public void getNextRecipe() 
+	{
+		if(recipeIndex < recipeBook.allDrinksArray.Length-1)
+		{
+			recipeIndex++;
+			text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+		}
+	}
+
+	public void getPreviousRecipe()
+	{
+		if(recipeIndex > 0)
+		{
+			recipeIndex--;
+			text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+		}
 	}
 
 }
