@@ -66,7 +66,7 @@ public class RecipeBook{
 			case Ingredients.coldCup:
 				return "Cold cup";
 			case Ingredients.expresso:
-				return "Expresso";
+				return "Espresso";
 			case Ingredients.hotCup:
 				return "Hot Cup";
 			case Ingredients.ice:
