@@ -6,14 +6,15 @@ using System;
 
 public class RecipeBookText : MonoBehaviour {
 
-	public Text text;
+	public Text leftPageText;
+	public Text rightPageText;
 	RecipeBook recipeBook = new RecipeBook();
 	private int recipeIndex = 0;
 
 	void Start() 
 	{
-		text = gameObject.GetComponent<Text>();
-		text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+		leftPageText.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+		rightPageText.text = getRecipe(recipeBook.allDrinksArray[recipeIndex+1]);
 	}
 
 	private string getRecipe(Drink drink) 
@@ -53,19 +54,28 @@ public class RecipeBookText : MonoBehaviour {
 	/* These are for UI buttons to interface with. */
 	public void getNextRecipe() 
 	{
-		if(recipeIndex < recipeBook.allDrinksArray.Length-1)
+		if(recipeIndex+2 < recipeBook.allDrinksArray.Length)
 		{
-			recipeIndex++;
-			text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+			recipeIndex += 2;
+			leftPageText.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+
+			if(recipeIndex + 1 < recipeBook.allDrinksArray.Length) 
+				rightPageText.text = getRecipe(recipeBook.allDrinksArray[recipeIndex+1]);
+			else 
+				rightPageText.text = "";
 		}
 	}
 
 	public void getPreviousRecipe()
 	{
-		if(recipeIndex > 0)
+		if(recipeIndex > 1)
 		{
-			recipeIndex--;
-			text.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+			recipeIndex -= 2;
+			leftPageText.text = getRecipe(recipeBook.allDrinksArray[recipeIndex]);
+			if(recipeIndex + 1 < recipeBook.allDrinksArray.Length)  
+				rightPageText.text = getRecipe(recipeBook.allDrinksArray[recipeIndex+1]);
+			else
+				rightPageText.text = "";
 		}
 	}
 
