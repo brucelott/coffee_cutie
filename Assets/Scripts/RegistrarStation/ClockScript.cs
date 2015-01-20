@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ClockScript : MonoBehaviour {
+public class ClockScript : MonoBehaviour 
+{
 
-	//const int spriteStages=20;
 	public float roundFullTime=20f;
 	public Sprite[] frames;
 	SpriteRenderer renderer;
@@ -16,39 +16,38 @@ public class ClockScript : MonoBehaviour {
 	public bool stopped;
 
 	public RoundControllerScript roundController;
-	// Use this for initialization
-	void Start () {
 
+	void Start () 
+	{
 		renderer = GetComponent<SpriteRenderer> ();
 		soundPlayer = GetComponent<AudioSource> ();
 		spriteStages=frames.Length;
-
-	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-		if (!stopped) {
-						currentTime -= Time.deltaTime;
-						if (currentTime <= 0) {
-								currentTime = timeStep;
-								nextFrame ();
-						}
-				}
 
-
+	void Update () 
+	{
+		if (!stopped) 
+		{
+			currentTime -= Time.deltaTime;
+			if (currentTime <= 0) 
+			{
+				currentTime = timeStep;
+				nextFrame ();	
+			}
+		}
 	}
 
 	void nextFrame()
 	{
 		currentFrame++;
-		if (currentFrame >= spriteStages) {
-						endOfClockReached ();		
-				} else {
-						renderer.sprite = frames [currentFrame];
-				}
-
+		if (currentFrame >= spriteStages) 
+		{
+			endOfClockReached ();		
+		}
+		else 
+		{
+			renderer.sprite = frames [currentFrame];
+		}
 	}
 
 	void endOfClockReached()
@@ -67,7 +66,7 @@ public class ClockScript : MonoBehaviour {
 		currentFrame = 0;
 		renderer.sprite = frames [currentFrame];
 	}
-
+	
 	public void init(float newRoundTime)
 	{
 		roundFullTime=newRoundTime;
