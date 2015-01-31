@@ -33,6 +33,9 @@ public class StalkerScript : MonoBehaviour {
 
 	public RoundControllerScript roundController;
 
+	void ActiveStalkerSoundLoop() {
+		soundPlayer.PlayOneShot (heySound, 0.8f);
+	}
 
 	// Use this for initialization
 	public string[] catCalls =
@@ -54,7 +57,6 @@ public class StalkerScript : MonoBehaviour {
 		state = StalkerStates.waitingOut;
 		stalkerVisualObj.position = waitingPosition;
 		//state = StalkerStates.comingIn;
-
 	}
 
 	void Start () {
@@ -110,6 +112,7 @@ public class StalkerScript : MonoBehaviour {
 	{
 		init ();
 		state = StalkerStates.comingIn;
+		InvokeRepeating("ActiveStalkerSoundLoop", 2, 2);
 	}
 
 	private void leave()
@@ -127,11 +130,14 @@ public class StalkerScript : MonoBehaviour {
 	{
 		deactivateButton ();
 
-		if (Random.Range (0, chanceInOfGettingAngry) == 0) {
-						getAngry ();
-				} else {
-						leave ();
-				}
+		getAngry();
+		leave();
+		CancelInvoke("ActiveStalkerSoundLoop");
+		/* if (Random.Range (0, chanceInOfGettingAngry) == 0) { */
+		/* 				getAngry (); */
+		/* 		} else { */
+		/* 				leave (); */
+		/* 		} */
 
 	}
 
