@@ -16,7 +16,6 @@ public class RoundControllerScript : MonoBehaviour {
 	public DrinkStationScript drinkStation;
 	public StalkerStationScript stalkerStation;
 	public RegistrarStationScript registrarStation;
-	public HeartManagerScript heartManager;
 	public ClockScript clock;
 	public AudioSource musicPlayer;
 
@@ -38,7 +37,6 @@ public class RoundControllerScript : MonoBehaviour {
 		enableAllScripts ();
 		musicPlayer.Play ();
 		clock.init (maxTimeOfRoundInSeconds);
-		heartManager.init ();
 		drinkStation.init ();
 		stalkerStation.init ();
 		registrarStation.init ();
@@ -56,20 +54,12 @@ public class RoundControllerScript : MonoBehaviour {
 	public void incorrectResult()
 	{
 		incorrectDrinks++;
-		heartManager.takeHeartOff ();
 	}
 
 
 	public void aStalkerGotAngry()
 	{
 		Debug.Log ("in Round Controller Stalker Angry");
-		heartManager.takeHeartOff ();
-	}
-
-	public void outOfHearts()
-	{
-		Debug.Log ("in Round Controller Out of Hearts");
-		endRound ();
 	}
 
 	public void outOfTime()
@@ -95,7 +85,6 @@ public class RoundControllerScript : MonoBehaviour {
 		drinkStation.enabled=true;
 		stalkerStation.enabled=true;
 		registrarStation.enabled=true;
-		heartManager.enabled=true;
 		clock.enabled=true;
 	}
 
@@ -105,7 +94,6 @@ public class RoundControllerScript : MonoBehaviour {
 		drinkStation.enabled=false;
 		stalkerStation.enabled=false;
 		registrarStation.enabled=false;
-		heartManager.enabled=false;
 		clock.enabled=false;
 	}
 }
