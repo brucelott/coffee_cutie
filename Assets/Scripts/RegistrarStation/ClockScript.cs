@@ -37,7 +37,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	void nextFrame()
+	public void nextFrame()
 	{
 		currentFrame++;
 		if (currentFrame >= spriteStages) 

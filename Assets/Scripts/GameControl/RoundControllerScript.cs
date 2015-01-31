@@ -60,6 +60,9 @@ public class RoundControllerScript : MonoBehaviour {
 	public void aStalkerGotAngry()
 	{
 		Debug.Log ("in Round Controller Stalker Angry");
+		// Penalize player by removing some time.
+		clock.nextFrame();
+		clock.nextFrame();
 	}
 
 	public void outOfTime()
