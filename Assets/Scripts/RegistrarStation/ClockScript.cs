@@ -33,21 +33,39 @@ public class ClockScript : MonoBehaviour
 			{
 				currentTime = timeStep;
 				nextFrame ();	
+				StartCoroutine(FlashClockSprite(1));
 			}
 		}
 	}
 
-	public void nextFrame()
+	IEnumerator FlashClockSprite(int numFlashes) 
+	{
+		for(int i = 0; i < numFlashes; i++) {
+			renderer.material.color = Color.red;
+			yield return new WaitForSeconds(0.25f);
+			renderer.material.color = Color.white;
+			yield return new WaitForSeconds(0.25f);
+		}
+	}
+
+	void nextFrame()
 	{
 		currentFrame++;
 		if (currentFrame >= spriteStages) 
 		{
-			endOfClockReached ();		
+			endOfClockReached ();
 		}
 		else 
 		{
 			renderer.sprite = frames [currentFrame];
 		}
+	}
+
+	public void deductTime(int numFrames) {
+		for(int i = 0; i < numFrames; i++) {
+			nextFrame();
+		}
+		StartCoroutine(FlashClockSprite(3));
 	}
 
 	void endOfClockReached()
@@ -56,6 +74,8 @@ public class ClockScript : MonoBehaviour
 		currentFrame = 0;
 		stopped = true;
 		roundController.outOfTime ();
+		StartCoroutine(FlashClockSprite(6));
+		renderer.material.color = Color.red;
 	}
 
 	public void init()
